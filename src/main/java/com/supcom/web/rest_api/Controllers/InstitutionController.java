@@ -52,7 +52,7 @@ public class InstitutionController {
             .orElseThrow(() -> new RelationNotFoundException("institution not found for this id :: " + institutionId));
 
 
-        institution.setLine(inst.getLine()); institution.setCurrent(inst.getCurrent()); institution.setName(inst.getName());
+        institution.setLine(inst.getLine()); institution.setCurrent(inst.getCurrent()); institution.setName(inst.getName());institution.setService(inst.getService());
 
         final Institution updatedinstitution = institutionRepository.save(institution);
         return ResponseEntity.ok(updatedinstitution);

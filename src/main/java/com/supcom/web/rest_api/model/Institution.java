@@ -7,14 +7,16 @@ import javax.persistence.Table;
 public class Institution {
     private long Id;
     private String Name;
+    private String Service;
     private long  Line;
     private long Current;
         // Constructor
         public Institution() {
         }
-        public Institution(final String Name, final long Line, final long Current) {
+        public Institution(final String Name,final String Service, final long Line, final long Current) {
             this.Name =Name;
             this.Line=Line;
+            this.Service=Service;
             this.Current = Current;
         }
         @Id
@@ -45,6 +47,13 @@ public class Institution {
         }
         public void setCurrent(final long Line) {
             this.Current = Line;
+        }
+         @Column(name = "Service", nullable = false)
+         public String getService() {
+                return Service;
+            }
+         public void setService(final String Service) {
+                this.Service = Service;
         }
     
 }
