@@ -39,9 +39,11 @@ public class InstitutionController {
                 .orElseThrow(() -> new RelationNotFoundException("institution not found for this id :: "+ institutionId));
         return ResponseEntity.ok().body(institution);
     }
+
     @PostMapping("/inst")
     public Institution createInstitution(@RequestBody Institution inst) { return institutionRepository.save(inst);
     }
+
     @PutMapping("/inst/{id}")
     public ResponseEntity<Institution> updateinstitution(@PathVariable(value = "id") Long institutionId,
 
@@ -50,10 +52,10 @@ public class InstitutionController {
             .orElseThrow(() -> new RelationNotFoundException("institution not found for this id :: " + institutionId));
 
 
+        institution.setLine(inst.getLine()); institution.setCurrent(inst.getCurrent()); institution.setName(inst.getName());
 
-        institution.setLine(inst.getLine()); institution.setCurrent(inst.getCurrent());
-
-        final Institution updatedinstitution = institutionRepository.save(institution); return ResponseEntity.ok(updatedinstitution);
+        final Institution updatedinstitution = institutionRepository.save(institution);
+        return ResponseEntity.ok(updatedinstitution);
 
     }
 
@@ -65,11 +67,8 @@ public class InstitutionController {
 
                 .orElseThrow(() -> new RelationNotFoundException("institution not found for this id :: " + institutionId));
 
-
         institutionRepository.delete(institutions);
-
         Map<String, Boolean> response = new HashMap<>(); response.put("deleted", Boolean.TRUE);
-
         return response;
 
     }
